@@ -1,0 +1,248 @@
+{
+    "locale_label": "Locale",
+    "@locale_label": {
+      "description": "Locale settings label"
+    },
+    "system_option": "System",
+    "@system_option": {
+      "description": "Locale option to use system setting"
+    },
+    "locale_en_option": "English (en)",
+    "@locale_en_option": {
+      "description": "Locale option: English"
+    },
+    "locale_ru_option": "Russian (ru)",
+    "@locale_ru_option": {
+      "description": "Locale option: Russian"
+    },
+    
+    "recoil_compensation_formula_label": "Recoil compensation formula",
+    "@recoil_compensation_formula_label": {
+      "description": "Recoil compensation formula settings label"
+    },
+    "recoil_compensation_formula_standard": "Standard (1 + STR/3)",
+    "@recoil_compensation_formula_standard": {
+      "description": "Recoil compensation formula option: Standard"
+    },
+    "recoil_compensation_formula_full_strength": "Full strength (1 + STR)",
+    "@recoil_compensation_formula_full_strength": {
+      "description": "Recoil compensation formula option: Full strength"
+    },
+
+    "search_instructions": " Search skills, items, augmentations, etc.",
+    "@search_instructions": {
+      "description": "Search instructions"
+    },
+    "search_tooltip": "Search stat blocks",
+    "@search_tooltip": {
+      "description": "Search tooltip"
+    },
+    "settings_tooltip": "Settings",
+    "@settings_tooltip": {
+      "description": "Settings tooltip"
+    },
+    "load_file_instructions": "Load a Chummer5 (.chum5) character file",
+    "@load_file_instructions": {
+      "description": "Instructions for loading the first character file"
+    },
+    "stat_block_menu_tooltip": "Character actions menu",
+    "@stat_block_menu_tooltip": {
+      "description": "Stat block menu tooltip"
+    },
+    "stat_block_menu_reload": "Reload",
+    "@stat_block_menu_reload": {
+      "description": "Stat block menu action - reload"
+    },
+    "stat_block_menu_close": "Close",
+    "@stat_block_menu_close": {
+      "description": "Stat block menu action - close"
+    },
+    "name_label": "NAME",
+    "@name_label": {
+      "description": "Character's name label"
+    },
+    "metatype_label": "METATYPE",
+    "@metatype_label": {
+      "description": "Metatype label"
+    },
+    "body_label": "B",
+    "@body_label": {
+      "description": "Body attribute short label"
+    },
+    "agility_label": "A",
+    "@agility_label": {
+      "description": "Agility attribute short label"
+    },
+    "reaction_label": "R",
+    "@reaction_label": {
+      "description": "Reaction attribute short label"
+    },
+    "strength_label": "S",
+    "@strength_label": {
+      "description": "Strength attribute short label"
+    },
+    "willpower_label": "W",
+    "@willpower_label": {
+      "description": "Willpower attribute short label"
+    },
+    "logic_label": "L",
+    "@logic_label": {
+      "description": "Logic attribute short label"
+    },
+    "intuition_label": "I",
+    "@intuition_label": {
+      "description": "Intuition attribute short label"
+    },
+    "charisma_label": "C",
+    "@charisma_label": {
+      "description": "Charisma attribute short label"
+    },
+    "essence_label": "ESS",
+    "@essence_label": {
+      "description": "Essence attribute short label"
+    },
+    "edge_label": "EDG",
+    "@edge_label": {
+      "description": "Edge attribute short label"
+    },
+    "magic_label": "M",
+    "@magic_label": {
+      "description": "Magic attribute short label"
+    },
+    "resonance_label": "RES",
+    "@resonance_label": {
+      "description": "Resonance attribute short label"
+    },
+    "depth_label": "DEP",
+    "@depth_label": {
+      "description": "Depth attribute short label"
+    },
+    "condition": "Condition",
+    "@condition": {
+      "description": "Condition"
+    },
+    "armor": "Armor",
+    "@armor": {
+      "description": "Armor"
+    },
+    "limits": "Limits",
+    "@limits": {
+      "description": "Limits"
+    },
+    "physical": "Physical",
+    "@physical": {
+      "description": "Physical"
+    },
+    "mental": "Mental",
+    "@mental": {
+      "description": "Mental"
+    },
+    "social": "Social",
+    "@social": {
+      "description": "Social"
+    },
+    "initiative": "Initiative",
+    "@initiative": {
+      "description": "Initiative"
+    },
+    "active_skills": "Active Skills",
+    "@active_skills": {
+      "description": "Active Skills"
+    },
+    "knowledge_skills": "Knowledge Skills",
+    "@knowledge_skills": {
+      "description": "Knowledge Skills"
+    },
+    "languages": "Languages",
+    "@languages": {
+      "description": "Languages"
+    },
+    "powers": "Powers",
+    "@powers": {
+      "description": "Powers"
+    },
+    "qualities": "Qualities",
+    "@qualities": {
+      "description": "Qualities"
+    },
+    "martial_arts": "Martial Arts",
+    "@martial_arts": {
+      "description": "Martial Arts"
+    },
+    "adept_powers": "Adept Powers",
+    "@adept_powers": {
+      "description": "Adept Powers"
+    },
+    "initiation_grade": "Initiation Grade",
+    "@initiation_grade": {
+      "description": "Initiation Grade"
+    },
+    "metamagic": "Metamagic",
+    "@metamagic": {
+      "description": "Metamagic"
+    },
+    "magic_arts": "Magic Arts",
+    "@magic_arts": {
+      "description": "Magic Arts"
+    },
+    "spells": "Spells",
+    "@spells": {
+      "description": "Spells"
+    },
+    "alchemical_preparations": "Alchemical Preparations",
+    "@alchemical_preparations": {
+      "description": "Alchemical Preparations"
+    },
+    "spirits": "Spirits",
+    "@spirits": {
+      "description": "Spirits"
+    },
+    "submersion_grade": "Submersion Grade",
+    "@submersion_grade": {
+      "description": "Submersion Grade"
+    },
+    "echoes": "Echoes",
+    "@echoes": {
+      "description": "Echoes"
+    },
+    "complex_forms": "Complex Forms",
+    "@complex_forms": {
+      "description": "Complex Forms"
+    },
+    "sprites": "Sprites",
+    "@sprites": {
+      "description": "Sprites"
+    },
+    "augmentations": "Augmentations",
+    "@augmentations": {
+      "description": "Augmentations"
+    },
+    "gear": "Gear",
+    "@gear": {
+      "description": "Gear"
+    },
+    "weapons": "Weapons",
+    "@weapons": {
+      "description": "Weapons"
+    },
+    "armor_sets": "Armor Sets",
+    "@armor_sets": {
+      "description": "Armor Sets"
+    },
+    "vehicles": "Vehicles",
+    "@vehicles": {
+      "description": "Vehicles"
+    },
+    "contacts": "Contacts",
+    "@contacts": {
+      "description": "Contacts"
+    },
+    "nuyen": "Nuyen",
+    "@nuyen": {
+      "description": "Nuyen"
+    },
+    "karma": "Karma",
+    "@karma": {
+      "description": "Karma"
+    }
+}

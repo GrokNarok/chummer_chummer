@@ -1,0 +1,100 @@
+import 'package:chummer_chummer/features/stat_block_page/data.dart';
+
+const skillGroupMapping = <String, String>{
+  "Con": "Acting",
+  "Impersonation": "Acting",
+  "Performance": "Acting",
+  "Flight": "Athletics",
+  "Gymnastics": "Athletics",
+  "Running": "Athletics",
+  "Swimming": "Athletics",
+  "Biotechnology": "Biotech",
+  "Cybertechnology": "Biotech",
+  "First Aid": "Biotech",
+  "Medicine": "Biotech",
+  "Blades": "Close Combat",
+  "Clubs": "Close Combat",
+  "Unarmed Combat": "Close Combat",
+  "Banishing": "Conjuring",
+  "Binding": "Conjuring",
+  "Summoning": "Conjuring",
+  "Cybercombat": "Cracking",
+  "Electronic Warfare": "Cracking",
+  "Hacking": "Cracking",
+  "Computer": "Electronics",
+  "Hardware": "Electronics",
+  "Software": "Electronics",
+  "Alchemy": "Enchanting",
+  "Artificing": "Enchanting",
+  "Disenchanting": "Enchanting",
+  "Automatics": "Firearms",
+  "Longarms": "Firearms",
+  "Pistols": "Firearms",
+  "Etiquette": "Influence",
+  "Leadership": "Influence",
+  "Negotiation": "Influence",
+  "Aeronautics Mechanic": "Engineering",
+  "Automotive Mechanic": "Engineering",
+  "Industrial Mechanic": "Engineering",
+  "Nautical Mechanic": "Engineering",
+  "Navigation": "Outdoors",
+  "Survival": "Outdoors",
+  "Tracking": "Outdoors",
+  "Counterspelling": "Sorcery",
+  "Ritual Spellcasting": "Sorcery",
+  "Spellcasting": "Sorcery",
+  "Disguise": "Stealth",
+  "Palming": "Stealth",
+  "Sneaking": "Stealth",
+  "Compiling": "Tasking",
+  "Decompiling": "Tasking",
+  "Registering": "Tasking",
+};
+
+final improvementsByName = improvementNames.map((k, v) => MapEntry(v, k));
+const improvementNames = <ImprovementType, String>{
+  ImprovementType.unarmedReach: "UnarmedReach",
+  ImprovementType.weaponAccuracy: "WeaponAccuracy",
+  ImprovementType.weaponSkillAccuracy: "WeaponSkillAccuracy",
+};
+
+String? getSkillForWeaponCategory(String weaponCategory, String weaponName) {
+  const weaponCategorySkills = {
+    "Bows": "Archery",
+    "Crossbows": "Archery",
+    "Assault Rifles": "Automatics",
+    "Carbines": "Automatics",
+    "Machine Pistols": "Automatics",
+    "Submachine Guns": "Automatics",
+    "Blades": "Blades",
+    "Clubs": "Clubs",
+    "Improvised Weapons": "Clubs",
+    "Assault Cannons": "Heavy Weapons",
+    "Grenade Launchers": "Heavy Weapons",
+    "Missile Launchers": "Heavy Weapons",
+    "Light Machine Guns": "Heavy Weapons",
+    "Medium Machine Guns": "Heavy Weapons",
+    "Heavy Machine Guns": "Heavy Weapons",
+    "Shotguns": "Longarms",
+    "Sniper Rifles": "Longarms",
+    "Sporting Rifles": "Longarms",
+    "Throwing Weapons": "Throwing Weapons",
+    "Gear": "Throwing Weapons",
+    "Unarmed": "Unarmed Combat",
+    "Tasers": "Pistols",
+    "Holdouts": "Pistols",
+    "Light Pistols": "Pistols",
+    "Heavy Pistols": "Pistols",
+    "Exotic Melee Weapons": "Exotic Melee Weapons",
+    "Exotic Ranged Weapons": "Exotic Ranged Weapon",
+    "Special Weapons": "Exotic Ranged Weapon",
+    "Flamethrowers": "Exotic Ranged Weapon (Flamethrowers)",
+    "Laser Weapons": "Exotic Ranged Weapon (Laser Weapons)",
+  };
+
+  final weaponSkill = weaponCategorySkills[weaponCategory];
+  if (weaponSkill == null) return null;
+
+  final isUniqueSnowflakeExotic = weaponCategory == "Exotic Melee Weapons" || weaponCategory == "Exotic Ranged Weapons" || weaponCategory == "Special Weapons";
+  return weaponSkill + (isUniqueSnowflakeExotic ? " ($weaponName)" : "");
+}
