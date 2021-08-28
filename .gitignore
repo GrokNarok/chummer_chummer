@@ -25,6 +25,7 @@
 **/doc/api/
 .dart_tool/
 .flutter-plugins
+.flutter-plugins-dependencies
 .packages
 .pub-cache/
 .pub/
@@ -82,6 +83,7 @@ build/
 bin/
 gen/
 out/
+lib/generated_plugin_registrant.dart
 
 # Gradle files
 .gradle/
