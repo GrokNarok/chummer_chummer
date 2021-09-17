@@ -236,7 +236,7 @@ class StatBlock extends StatelessWidget {
                     tooltip: AppLocalizations.of(ctx)!.stat_block_menu_tooltip,
                     onSelected: (callBack) => callBack(),
                     itemBuilder: (_) => [
-                      if (viewModel.loadedFromFile)
+                      if (viewModel.hasCharacterFilePath)
                         PopupMenuItem(
                           child: Row(children: <Widget>[
                             Icon(Icons.refresh),

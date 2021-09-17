@@ -9,7 +9,7 @@ part 'state.g.dart';
 abstract class AppState implements Built<AppState, AppStateBuilder> {
   factory AppState([void updates(AppStateBuilder b)]) = _$AppState;
 
-  factory AppState.initial({SharedPreferences? preferences}) => new _$AppState._(
+  factory AppState.initial({SharedPreferences? preferences}) => _$AppState._(
         settingsState: SettingsState.initial(preferences: preferences),
         statBlockPageState: StatBlockPageState.initial(),
       );

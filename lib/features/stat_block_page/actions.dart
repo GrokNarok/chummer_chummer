@@ -20,33 +20,36 @@ abstract class StatBlockPageAction extends ReduxActionWithServices<AppState> {
 }
 
 class LoadCharacterFile extends StatBlockPageAction {
+  late int _index;
+
+  void before() {
+    _index = fState.loadingList.length;
+    dispatch(_SetLoadingCharacterFile(index: _index));
+  }
+
   @override
   Future<StatBlockPageState> fReduce() async {
-    final index = fState.loadingList.length;
-
     try {
       final file = await store.fileService.open();
       if (file == null) {
-        return fState;
+        return fState.rebuild((b) => b..loadingList[_index] = false);
       }
 
-      dispatch(_SetLoadingCharacterFile(index: index));
-
-      final response = await CharacterFileParser.parse(await file.readAsString());
+      final response = await CharacterFileParser.parse(file.content);
       if (response.isError) {
         return fState.rebuild((b) => b
           ..error = response.error
-          ..loadingList[index] = false);
+          ..loadingList[_index] = false);
       } else {
         final newCharacter = response.value;
         return fState.rebuild((b) => b
-          ..loadingList[index] = false
+          ..loadingList[_index] = false
           ..characters.add((newCharacter..sourceFilePath = file.path).build()));
       }
     } catch (e) {
       return fState.rebuild((b) => b
         ..error = ErrorData(ErrorCodes.fileIO, ErrorLevels.error, "Failed to open file: $e")
-        ..loadingList[index] = false);
+        ..loadingList[_index] = false);
     }
   }
 }

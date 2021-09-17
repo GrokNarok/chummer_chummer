@@ -31,7 +31,7 @@ dependencies:
   built_collection:
   xml: ^5.1.0
   shared_preferences: ^2.0.6
-  file_picker: ^4.0.0
+  file_picker: ^4.0.1
   substring_highlight: ^1.0.33
 
 dev_dependencies:
@@ -39,9 +39,6 @@ dev_dependencies:
     sdk: flutter
   build_runner: ^2.0.1
   built_value_generator: ^8.0.6
-
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:

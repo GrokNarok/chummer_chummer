@@ -1,9 +1,10 @@
 import 'dart:io';
 
-import 'package:async_redux/async_redux.dart';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:async_redux/async_redux.dart';
 
 import 'package:chummer_chummer/util/build_context.dart';
 import 'package:chummer_chummer/widgets/app_bar_progress_indicator.dart';
@@ -43,7 +44,7 @@ class SettingsPage extends StatelessWidget {
           items: [
             DropdownMenuItem<Locale>(
               key: Key("default_locale"),
-              child: Text("${AppLocalizations.of(ctx)!.system_option} (${Platform.localeName})"),
+              child: Text("${AppLocalizations.of(ctx)!.system_option}" + (!kIsWeb ? " (${Platform.localeName})" : "")), // [localeName] is not available on web
             ),
             DropdownMenuItem<Locale>(
               value: Locale("en"),

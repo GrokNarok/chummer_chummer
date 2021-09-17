@@ -46,7 +46,7 @@ class Lightweight extends Vm {
 
   Lightweight(this._character, this._settings) : super(equals: [_character, _settings]);
 
-  bool get loadedFromFile => _character!.sourceFilePath != null;
+  bool get hasCharacterFilePath => _character!.sourceFilePath != null;
 
   String get name => _character!.name;
   String get metatype => _character!.metatype;

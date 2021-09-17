@@ -84,6 +84,8 @@ bin/
 gen/
 out/
 lib/generated_plugin_registrant.dart
+windows/flutter/generated_plugin_registrant.h
+windows/flutter/generated_plugin_registrant.cc
 
 # Gradle files
 .gradle/
