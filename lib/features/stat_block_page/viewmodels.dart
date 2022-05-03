@@ -25,7 +25,7 @@ class StatBlockPageViewModel extends Vm {
 
   bool get isLoading => _state.loadingList.contains(true);
 
-  bool get hasCharacter => _state.characters.length > 0;
+  bool get hasCharacter => _state.characters.isNotEmpty;
   int get numberOfCharacters => _state.characters.length;
 }
 
@@ -100,7 +100,7 @@ class Lightweight extends Vm {
   String get languageSkills => _skillsToString(_character!.languageSkills, isLang: true);
   static String _skillsToString(List<Skill> skills, {bool isLang = false}) => skills.where((s) => isLang || s.rating > 0).map((s) {
         return [
-          "${s.name}",
+          s.name,
           if (s.specializations.isNotEmpty) " (${s.specializations.join(", ")})",
           " ${s.rating > 0 ? s.rating : 'N'}",
           if (s.specializations.isNotEmpty) " (+2)"
@@ -174,7 +174,7 @@ class Lightweight extends Vm {
           foldCyberList(c.components, false),
         ].join(", ");
         return [
-          "${c.name}",
+          c.name,
           if (c.rating != 0) " ${c.rating}",
           if (isTopLevel && c.grade != "Standard") " (${c.grade})",
           if (attributesAndOrComponents.isNotEmpty) " [$attributesAndOrComponents]",
@@ -194,7 +194,7 @@ class Lightweight extends Vm {
       return gear.where((g) => g.name != "Commlink Functionality").map((g) {
         return [
           if (g.quantity != 1) "${g.quantity} ",
-          "${g.name}",
+          g.name,
           if (g.rating != 0) " ${g.rating}",
           foldGearList(g.components),
         ].join();
@@ -280,13 +280,13 @@ class Lightweight extends Vm {
     });
 
     final accessoriesStrings = accessories.map((a) {
-      return "${a.name}" + (a.rating > 0 ? " ${a.rating}" : "");
+      return a.name + (a.rating > 0 ? " ${a.rating}" : "");
     }).join(", ");
 
     return [
       "${weapon.name} [",
       [
-        "${weapon.category}",
+        weapon.category,
         if (weapon.isMelee) calculateReach(),
         calculateAccuracy(),
         "DV $damage",
@@ -306,18 +306,18 @@ class Lightweight extends Vm {
   static List<String> _armorToStrings(List<Armor> armor) => armor.map((ar) {
         final armorBonus = _calculateArmorBonus(ar);
         final mods = ar.mods.map((am) {
-          return "${am.name}" + (am.extra.isNotEmpty ? " (${am.extra})" : "") + (am.rating > 0 ? " ${am.rating}" : "");
+          return am.name + (am.extra.isNotEmpty ? " (${am.extra})" : "") + (am.rating > 0 ? " ${am.rating}" : "");
         });
         final gear = ar.gear.map((g) {
-          return "${g.name}" + (g.rating > 0 ? " ${g.rating}" : "");
+          return g.name + (g.rating > 0 ? " ${g.rating}" : "");
         });
         final modsAndGear = [...mods, ...gear].join(", ");
         return [
-          "${ar.name}",
+          ar.name,
           if (ar.label.isNotEmpty) " (${ar.label})",
           " [",
           if (ar.isAddon) "+",
-          "${ar.armor}",
+          ar.armor,
           if (armorBonus > 0) " (${ar.armor + armorBonus})",
           if (modsAndGear.isNotEmpty) ", w/ $modsAndGear",
           "]",
@@ -348,7 +348,7 @@ class Lightweight extends Vm {
   static final _vehiclesCache = cache1state((List<Vehicle> vehicles) => () => _vehiclesToStrings(vehicles));
   static List<String> _vehiclesToStrings(List<Vehicle> vehicles) => vehicles.map((v) {
         final mods = v.mods.map((m) {
-          return "${m.name}" + (m.rating > 0 ? " ${m.rating}" : "");
+          return m.name + (m.rating > 0 ? " ${m.rating}" : "");
         });
         final mounts = v.mounts.map((wm) {
           return "${wm.name} (" +
@@ -361,7 +361,7 @@ class Lightweight extends Vm {
               ")";
         });
         final gear = v.gear.map((g) {
-          return (g.quantity > 1 ? "${g.quantity} " : "") + "${g.name}" + (g.rating > 0 ? " ${g.rating}" : "");
+          return (g.quantity > 1 ? "${g.quantity} " : "") + g.name + (g.rating > 0 ? " ${g.rating}" : "");
         });
 
         return "${v.name} [" +
@@ -384,7 +384,7 @@ class Lightweight extends Vm {
   bool get hasContacts => _character!.contacts.isNotEmpty;
   List<String> get contacts => _character!.contacts.map((c) {
         return [
-          "${c.role}",
+          c.role,
           if (c.location.isNotEmpty) " in ${c.location}",
           " (Connection ${c.connection}, Loyalty ${c.loyalty})",
           if (c.name.isNotEmpty) ": ${c.name}",

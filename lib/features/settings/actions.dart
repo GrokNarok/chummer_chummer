@@ -24,6 +24,7 @@ class SetLocaleSettings extends SettingsAction {
 
   SetLocaleSettings({required this.locale});
 
+  @override
   void before() => dispatch(_SetIsBusy());
 
   @override
@@ -46,6 +47,7 @@ class SetRecoilCompensationFormulaSettings extends SettingsAction {
 
   SetRecoilCompensationFormulaSettings({required this.recoilCompensationFormula});
 
+  @override
   void before() => dispatch(_SetIsBusy());
 
   @override

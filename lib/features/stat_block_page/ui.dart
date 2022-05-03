@@ -18,6 +18,8 @@ import 'package:chummer_chummer/features/stat_block_page/viewmodels.dart';
 import 'package:chummer_chummer/widgets/app_bar_progress_indicator.dart';
 
 class StatBlockPage extends StatefulWidget {
+  const StatBlockPage({Key? key}) : super(key: key);
+
   @override
   _StatBlockPageState createState() => _StatBlockPageState();
 }
@@ -74,7 +76,7 @@ class _StatBlockPageState extends State<StatBlockPage> {
               floatingActionButton: FloatingActionButton(
                 backgroundColor: Theme.of(ctx).colorScheme.secondary,
                 onPressed: () => ctx.dispatch(LoadCharacterFile()),
-                child: Icon(Icons.add),
+                child: const Icon(Icons.add),
               ),
             ),
           ),
@@ -91,29 +93,29 @@ class _StatBlockPageState extends State<StatBlockPage> {
   AppBar _appBar(BuildContext ctx, StatBlockPageViewModel viewModel) => AppBar(
         leading: (!context.isWideScreen && showSearch)
             ? IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () => setState(() => showSearch = !showSearch),
               )
             : null,
         title: Row(
           children: [
             if (context.isWideScreen || !showSearch)
-              Padding(
-                padding: const EdgeInsetsDirectional.only(end: Sizing.l),
+              const Padding(
+                padding: EdgeInsetsDirectional.only(end: Sizing.l),
                 child: Text("Chummer\u00B2"),
               ),
             if (context.isWideScreen || showSearch)
               Expanded(
                 child: Center(
-                  child: Container(
+                  child: SizedBox(
                     width: 400.0,
                     child: TextField(
                       controller: _searchController,
                       cursorColor: Theme.of(ctx).textTheme.bodyText2?.color,
                       decoration: InputDecoration(
-                        prefixIconConstraints: BoxConstraints(maxWidth: Sizing.l, maxHeight: Sizing.l),
+                        prefixIconConstraints: const BoxConstraints(maxWidth: Sizing.l, maxHeight: Sizing.l),
                         prefixIcon: Icon(Icons.search, color: Theme.of(ctx).textTheme.bodyText2?.color),
-                        suffixIconConstraints: BoxConstraints(maxWidth: Sizing.l, maxHeight: Sizing.l),
+                        suffixIconConstraints: const BoxConstraints(maxWidth: Sizing.l, maxHeight: Sizing.l),
                         suffixIcon: _searchController.text.isNotEmpty
                             ? Material(
                                 color: Colors.transparent,
@@ -136,14 +138,14 @@ class _StatBlockPageState extends State<StatBlockPage> {
         actions: [
           if (!context.isWideScreen && !showSearch)
             IconButton(
-              key: Key("search_button"),
-              icon: Icon(Icons.search),
+              key: const Key("search_button"),
+              icon: const Icon(Icons.search),
               tooltip: AppLocalizations.of(ctx)!.settings_tooltip,
               onPressed: () => setState(() => showSearch = !showSearch),
             ),
           IconButton(
-            key: Key("settings_button"),
-            icon: Icon(Icons.settings),
+            key: const Key("settings_button"),
+            icon: const Icon(Icons.settings),
             tooltip: AppLocalizations.of(ctx)!.settings_tooltip,
             onPressed: () => Navigator.pushNamed(context, '/settings'),
           ),
@@ -156,7 +158,7 @@ class _StatBlockPageState extends State<StatBlockPage> {
     final numStatBlocks = viewModel.numberOfCharacters;
     final numColumns = max((MediaQuery.of(ctx).size.width / minStatBlockWidth).floor(), 1);
     return ListView.builder(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       itemCount: (numStatBlocks / numColumns).ceil(),
       itemBuilder: (_, i) => Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -169,7 +171,7 @@ class _StatBlockPageState extends State<StatBlockPage> {
                     ? Container(
                         margin: const EdgeInsets.all(Sizing.xxs),
                         decoration: BoxDecoration(
-                          boxShadow: [BoxShadow(color: AppColors.black.withOpacity(0.6), blurRadius: 1, offset: Offset(2, 2))],
+                          boxShadow: [BoxShadow(color: AppColors.black.withOpacity(0.6), blurRadius: 1, offset: const Offset(2, 2))],
                         ),
                         child: StatBlock(index: index),
                       )
@@ -197,7 +199,7 @@ class StatBlock extends StatelessWidget {
   const StatBlock({Key? key, required this.index}) : super(key: key);
 
   @override
-  Widget build(BuildContext ctx) => StoreConnector<AppState, Lightweight>(
+  Widget build(BuildContext context) => StoreConnector<AppState, Lightweight>(
         vm: () => CharacterViewModelFactory(index: index),
         builder: _buildPage,
       );
@@ -213,7 +215,7 @@ class StatBlock extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: Sizing.xs, vertical: Sizing.xxs),
+                  padding: const EdgeInsets.symmetric(horizontal: Sizing.xs, vertical: Sizing.xxs),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -239,7 +241,7 @@ class StatBlock extends StatelessWidget {
                       if (viewModel.hasCharacterFilePath)
                         PopupMenuItem(
                           child: Row(children: <Widget>[
-                            Icon(Icons.refresh),
+                            const Icon(Icons.refresh),
                             const SizedBox(width: Sizing.s),
                             Text(AppLocalizations.of(ctx)!.stat_block_menu_reload),
                           ]),
@@ -247,7 +249,7 @@ class StatBlock extends StatelessWidget {
                         ),
                       PopupMenuItem(
                         child: Row(children: <Widget>[
-                          Icon(Icons.close),
+                          const Icon(Icons.close),
                           const SizedBox(width: Sizing.s),
                           Text(AppLocalizations.of(ctx)!.stat_block_menu_close),
                         ]),

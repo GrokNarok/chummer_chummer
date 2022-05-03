@@ -8,7 +8,7 @@ import 'data.dart';
 part 'state.g.dart';
 
 abstract class StatBlockPageState implements Built<StatBlockPageState, StatBlockPageStateBuilder> {
-  factory StatBlockPageState([void updates(StatBlockPageStateBuilder b)]) = _$StatBlockPageState;
+  factory StatBlockPageState([void Function(StatBlockPageStateBuilder b) updates]) = _$StatBlockPageState;
   StatBlockPageState._();
   factory StatBlockPageState.initial() => _$StatBlockPageState._(
         loadingList: BuiltList<bool>(),

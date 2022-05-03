@@ -24,6 +24,7 @@ class ExpandingText extends StatefulWidget {
     this.expandOnSearchHit = true,
   }) : super(key: key);
 
+  @override
   _ExpandingTextState createState() => _ExpandingTextState();
 }
 
@@ -43,7 +44,7 @@ class _ExpandingTextState extends State<ExpandingText> with TickerProviderStateM
           return Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: widget.iconSize,
                 height: widget.iconSize,
                 child: Icon(Icons.circle, size: (widget.iconSize.round() ~/ 3).toDouble()), // Do third of the icon size but round to nearest 3
@@ -73,8 +74,8 @@ class _ExpandingTextState extends State<ExpandingText> with TickerProviderStateM
                   ),
                   Expanded(
                     child: AnimatedCrossFade(
-                      firstCurve: Threshold(0.0001),
-                      secondCurve: Threshold(0.0001),
+                      firstCurve: const Threshold(0.0001),
+                      secondCurve: const Threshold(0.0001),
                       duration: widget.duration,
                       firstChild: widget.collapsed,
                       secondChild: widget.expanded,

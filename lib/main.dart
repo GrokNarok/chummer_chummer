@@ -14,7 +14,7 @@ import 'package:chummer_chummer/features/settings/ui.dart';
 /// Disconnected mode is used to run the app without APIs, file io, hardware interfaces, ect. with data
 /// normally provided by those replaced with fakes. Disconnected mode is also used in automated tests
 /// instead of (or in addition to) mocks.
-final bool runInDisconnectedMode = false;
+const bool runInDisconnectedMode = false;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,6 +32,7 @@ class App extends StatelessWidget {
 
   const App({Key? key, required this.store}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) => StoreProvider<AppState>(
         store: store,
         child: StoreConnector<AppState, _AppViewModel>(
@@ -46,8 +47,8 @@ class App extends StatelessWidget {
               supportedLocales: AppLocalizations.supportedLocales,
               locale: viewModel.locale,
               routes: {
-                '/': (_) => StatBlockPage(),
-                '/settings': (_) => SettingsPage(),
+                '/': (_) => const StatBlockPage(),
+                '/settings': (_) => const SettingsPage(),
               },
             ),
           ),

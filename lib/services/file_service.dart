@@ -19,19 +19,29 @@ class FileServiceConnected extends FileService {
   @override
   Future<FilePathAndContent?> open() async {
     FilePickerResult? result;
-    // Windows lets you restrict to '.chum5' files, android doesn't, need to check others.
-    if (!kIsWeb && Platform.isWindows) {
-      result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['chum5']);
-    } else {
+    if (kIsWeb) {
       result = await FilePicker.platform.pickFiles();
-    }
+      return (result != null)
+          ? FilePathAndContent(
+              null, // file path is not available on the web
+              utf8.decode(result.files.single.bytes!),
+            )
+          : null;
+    } else {
+      // Windows lets you restrict to '.chum5' files, android doesn't, need to check others.
+      if (Platform.isWindows) {
+        result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['chum5']);
+      } else {
+        result = await FilePicker.platform.pickFiles();
+      }
 
-    return (result != null)
-        ? FilePathAndContent(
-            kIsWeb ? null : result.files.single.path, // file path is not available on the web
-            utf8.decode(result.files.single.bytes!),
-          )
-        : null;
+      return (result != null)
+          ? FilePathAndContent(
+              result.files.single.path,
+              await File(result.files.single.path!).readAsString(),
+            )
+          : null;
+    }
   }
 }
 

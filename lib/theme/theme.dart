@@ -43,5 +43,5 @@ class ThemeExtension extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(ThemeExtension old) => colorScheme != old.colorScheme;
+  bool updateShouldNotify(ThemeExtension oldWidget) => colorScheme != oldWidget.colorScheme;
 }

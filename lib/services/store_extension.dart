@@ -22,5 +22,6 @@ class StoreWithServices<St> extends Store<St> {
 }
 
 abstract class ReduxActionWithServices<St> extends ReduxAction<St> {
+  @override
   StoreWithServices<St> get store => super.store as StoreWithServices<St>;
 }

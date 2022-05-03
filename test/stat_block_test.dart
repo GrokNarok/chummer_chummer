@@ -41,7 +41,8 @@ final TestStep iSeeOptionToOpenFile = TestStep("I see an option to open file", (
 
 final TestStep iOpenFile = TestStep("I open a character file", (tester) async {
   await tester.tap(find.byIcon(Icons.add));
-  await Future.delayed(Duration(milliseconds: 250)); // Opening file will spawn an isolate and we have to wait on it in real time, 1/4 sec should be enough.
+  await Future.delayed(
+      const Duration(milliseconds: 250)); // Opening file will spawn an isolate and we have to wait on it in real time, 1/4 sec should be enough.
   await tester.pumpAndSettle();
   // Disconnected mode automatically returns the test character file without further interaction
 });

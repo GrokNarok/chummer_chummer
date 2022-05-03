@@ -41,7 +41,7 @@ final TestStep iSeeEnglishLabels = TestStep("I see English labels", (tester) asy
 });
 
 final TestStep iChangeLocaleToRussian = TestStep("I change the locale to Russian", (tester) async {
-  var buttonToTap = find.byKey(Key("default_locale"));
+  var buttonToTap = find.byKey(const Key("default_locale"));
   await tester.dragUntilVisible(buttonToTap, find.byType(Viewport), const Offset(0, 50));
   await tester.tap(buttonToTap);
   await tester.pumpAndSettle();

@@ -254,7 +254,7 @@ class Contact {
 typedef Improvements = Map<ImprovementType, Map<String, double>>;
 
 abstract class Character implements Built<Character, CharacterBuilder> {
-  factory Character([void updates(CharacterBuilder b)]) = _$Character;
+  factory Character([void Function(CharacterBuilder b) updates]) = _$Character;
   Character._();
 
   String? get sourceFilePath;

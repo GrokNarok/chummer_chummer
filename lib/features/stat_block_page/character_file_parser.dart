@@ -24,8 +24,8 @@ class CharacterFileParser {
       final metatype = char.findString("metatype");
       final metavariant = char.findString("metavariant");
 
-      final reaction = _getAttribute(char, "REA");
-      final intuition = _getAttribute(char, "INT");
+      final reaction = _getBaseAttribute(char, "REA");
+      final intuition = _getBaseAttribute(char, "INT");
 
       final isTechnomancer = char.findBool("technomancer");
 
@@ -33,18 +33,18 @@ class CharacterFileParser {
         ..name = name
         ..metatype = metatype
         ..metavariant = (metavariant.isNotEmpty && metavariant.toLowerCase() != "none" && metavariant != metatype) ? metavariant : null
-        ..body = _getAttribute(char, "BOD")
-        ..agility = _getAttribute(char, "AGI")
+        ..body = _getBaseAttribute(char, "BOD")
+        ..agility = _getBaseAttribute(char, "AGI")
         ..reaction = reaction
-        ..strength = _getAttribute(char, "STR")
-        ..willpower = _getAttribute(char, "WIL")
-        ..logic = _getAttribute(char, "LOG")
+        ..strength = _getBaseAttribute(char, "STR")
+        ..willpower = _getBaseAttribute(char, "WIL")
+        ..logic = _getBaseAttribute(char, "LOG")
         ..intuition = intuition
-        ..charisma = _getAttribute(char, "CHA")
-        ..magic = char.findBool("magician") || char.findBool("adept") || char.findBool("critter") ? _getAttribute(char, "MAG") : null
-        ..resonance = isTechnomancer ? _getAttribute(char, "RES") : null
-        ..depth = char.findBool("ai") ? _getAttribute(char, "DEP") : null
-        ..edge = _getAttribute(char, "EDG")
+        ..charisma = _getBaseAttribute(char, "CHA")
+        ..magic = char.findBool("magician") || char.findBool("adept") || char.findBool("critter") ? _getSpecialAttribute(char, "MAG") : null
+        ..resonance = isTechnomancer ? _getSpecialAttribute(char, "RES") : null
+        ..depth = char.findBool("ai") ? _getSpecialAttribute(char, "DEP") : null
+        ..edge = _getBaseAttribute(char, "EDG")
         ..currentEdge = _getEdge(char)
         ..essence = char.findDouble("totaless")
         ..initiative = Initiative(base: (reaction.total + intuition.total), dice: _getInitiativeDice(char))
@@ -83,7 +83,7 @@ class CharacterFileParser {
   }
 
   static int _getEdge(XmlElement char) {
-    final currentEdge = _getAttribute(char, "EDG").total;
+    final currentEdge = _getBaseAttribute(char, "EDG").total;
     final it = char.findElements("improvements").single.findElements("improvement").where((n) => n.findString("improvedname") == "EDG");
     if (it.length != 1) {
       return currentEdge; // if there is no "improvement" the max edge = current edge
@@ -109,10 +109,19 @@ class CharacterFileParser {
         : 0;
   }
 
-  static Attribute _getAttribute(XmlElement char, String attrName) {
+  static Attribute _getBaseAttribute(XmlElement char, String attrName) {
     final attribute = _getAttributeElement(char, attrName);
     return Attribute(
       base: attribute.findInt("metatypemin") + attribute.findInt("base") + attribute.findInt("karma"),
+      total: attribute.findInt("totalvalue"),
+    );
+  }
+
+  // MAG, RES and DEP work a bit differently
+  static Attribute _getSpecialAttribute(XmlElement char, String attrName) {
+    final attribute = _getAttributeElement(char, attrName);
+    return Attribute(
+      base: attribute.findInt("totalvalue"),
       total: attribute.findInt("totalvalue"),
     );
   }
@@ -317,7 +326,7 @@ class CharacterFileParser {
           })
           .where((q) => !q.name.contains("Essence Hole")) // Essence Holes are included as cyberware but we don't want them.
           .toList()
-            ..sort((a, b) => a.name.compareTo(b.name));
+        ..sort((a, b) => a.name.compareTo(b.name));
     }
 
     return getCyberware(char.findElements("cyberwares").single);
@@ -334,7 +343,7 @@ class CharacterFileParser {
                 components: getGear(g.findElements("children").single),
               ))
           .toList()
-            ..sort((a, b) => a.name.compareTo(b.name));
+        ..sort((a, b) => a.name.compareTo(b.name));
     }
 
     return getGear(element.findElements("gears").single);
@@ -410,7 +419,7 @@ class CharacterFileParser {
               armor: am.findInt("armor"),
               extra: am.findString("extra")))
           .toList()
-            ..sort((a, b) => a.name.compareTo(b.name));
+        ..sort((a, b) => a.name.compareTo(b.name));
       final armorCustomFitStackBonus = a.findInt("armoroverride");
       final armorCustomFitStackName = mods.where((am) => am.name.toLowerCase().contains("custom fit (stack)")).map((am) => am.extra);
       final hasArmorCustomFitStack = armorCustomFitStackName.length == 1;
@@ -482,6 +491,7 @@ class CharacterFileParser {
   }
 
   static Improvements _getAllConditionalImprovements(XmlElement char) {
+    // ignore: prefer_collection_literals
     final out = Improvements();
     char.findElements("improvements").single.findElements("improvement").forEach((improvementElement) {
       final type = improvementsByName[improvementElement.findString("improvementttype")];
@@ -516,8 +526,8 @@ class CharacterFileParser {
 }
 
 extension XmlElementHelpers on XmlElement {
-  String findString(String name) => this.findElements(name).single.text;
-  int findInt(String name) => int.tryParse(this.findString(name)) ?? 0;
-  double findDouble(String name) => double.tryParse(this.findString(name)) ?? 0.0;
-  bool findBool(String name) => this.findString(name).toLowerCase() == "true";
+  String findString(String name) => findElements(name).single.text;
+  int findInt(String name) => int.tryParse(findString(name)) ?? 0;
+  double findDouble(String name) => double.tryParse(findString(name)) ?? 0.0;
+  bool findBool(String name) => findString(name).toLowerCase() == "true";
 }

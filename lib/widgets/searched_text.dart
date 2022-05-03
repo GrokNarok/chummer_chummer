@@ -53,5 +53,5 @@ class InheritedSearchTerm extends InheritedWidget {
   static InheritedSearchTerm? of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<InheritedSearchTerm>();
 
   @override
-  bool updateShouldNotify(InheritedSearchTerm old) => searchTerm != old.searchTerm;
+  bool updateShouldNotify(InheritedSearchTerm oldWidget) => searchTerm != oldWidget.searchTerm;
 }

@@ -58,11 +58,11 @@ class ErrorOr<T> {
   bool _checkedError = false;
 
   ErrorOr.error(ErrorData error)
-      : this._error = error,
-        this._value = null;
+      : _error = error,
+        _value = null;
   ErrorOr(T value)
-      : this._error = null,
-        this._value = value;
+      : _error = null,
+        _value = value;
 
   bool get isError {
     _checkedError = true;

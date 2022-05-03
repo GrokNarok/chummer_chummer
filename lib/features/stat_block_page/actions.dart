@@ -22,6 +22,7 @@ abstract class StatBlockPageAction extends ReduxActionWithServices<AppState> {
 class LoadCharacterFile extends StatBlockPageAction {
   late int _index;
 
+  @override
   void before() {
     _index = fState.loadingList.length;
     dispatch(_SetLoadingCharacterFile(index: _index));
@@ -59,6 +60,7 @@ class ReloadCharacterFile extends StatBlockPageAction {
 
   ReloadCharacterFile({required this.index}) : assert(!index.isNegative);
 
+  @override
   void before() {
     assert(index >= 0 && index < fState.characters.length, "Invalid Character index.");
     assert(fState.characters[index].sourceFilePath != null, "Trying to reload a character sheet that wasn't loaded from a file.");
@@ -120,7 +122,7 @@ class _SetLoadingCharacterFile extends StatBlockPageAction {
   @override
   StatBlockPageState fReduce() {
     if (index > fState.loadingList.length) {
-      assert(true, "Character index was not incremented correctly.");
+      assert(false, "Character index was not incremented correctly.");
       return fState;
     }
 

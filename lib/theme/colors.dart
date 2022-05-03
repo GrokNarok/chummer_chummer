@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class AppColors {
@@ -34,9 +32,9 @@ class ColorSchemeExtension {
 class AppColorSchemes {
   static const classicColorScheme = ColorScheme(
     primary: AppColors.black,
-    primaryVariant: AppColors.black,
+    primaryContainer: AppColors.black,
     secondary: AppColors.yellow,
-    secondaryVariant: AppColors.yellow,
+    secondaryContainer: AppColors.yellow,
     surface: AppColors.grey,
     background: AppColors.darkGrey,
     error: AppColors.red,

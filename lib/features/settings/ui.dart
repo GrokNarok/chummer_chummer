@@ -14,8 +14,10 @@ import 'package:chummer_chummer/features/settings/viewmodels.dart';
 import 'package:chummer_chummer/features/settings/actions.dart';
 
 class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
+
   @override
-  Widget build(BuildContext ctx) => StoreConnector<AppState, SettingsViewModel>(
+  Widget build(BuildContext context) => StoreConnector<AppState, SettingsViewModel>(
         vm: () => SettingsViewModelFactory(),
         builder: _buildPage,
       );
@@ -25,7 +27,7 @@ class SettingsPage extends StatelessWidget {
           bottom: viewModel.isBusy ? AppBarProgressIndicator() : null,
         ),
         body: ConstrainedBox(
-          constraints: BoxConstraints.loose(Size.fromWidth(480)),
+          constraints: BoxConstraints.loose(const Size.fromWidth(480)),
           child: ListView(
             children: [
               _localeSetting(ctx, viewModel),
@@ -43,15 +45,15 @@ class SettingsPage extends StatelessWidget {
           underline: Container(),
           items: [
             DropdownMenuItem<Locale>(
-              key: Key("default_locale"),
-              child: Text("${AppLocalizations.of(ctx)!.system_option}" + (!kIsWeb ? " (${Platform.localeName})" : "")), // [localeName] is not available on web
+              key: const Key("default_locale"),
+              child: Text(AppLocalizations.of(ctx)!.system_option + (!kIsWeb ? " (${Platform.localeName})" : "")), // [localeName] is not available on web
             ),
             DropdownMenuItem<Locale>(
-              value: Locale("en"),
+              value: const Locale("en"),
               child: Text(AppLocalizations.of(ctx)!.locale_en_option),
             ),
             DropdownMenuItem<Locale>(
-              value: Locale("ru"),
+              value: const Locale("ru"),
               child: Text(AppLocalizations.of(ctx)!.locale_ru_option),
             ),
           ],

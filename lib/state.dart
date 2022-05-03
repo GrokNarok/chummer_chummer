@@ -7,7 +7,7 @@ import 'package:chummer_chummer/features/stat_block_page/state.dart';
 part 'state.g.dart';
 
 abstract class AppState implements Built<AppState, AppStateBuilder> {
-  factory AppState([void updates(AppStateBuilder b)]) = _$AppState;
+  factory AppState([void Function(AppStateBuilder b) updates]) = _$AppState;
 
   factory AppState.initial({SharedPreferences? preferences}) => _$AppState._(
         settingsState: SettingsState.initial(preferences: preferences),

@@ -121,7 +121,7 @@ class Scenario {
     final binding = TestWidgetsFlutterBinding.ensureInitialized();
 
     testWidgets(_toString(), (WidgetTester tester) async {
-      binding.renderView.configuration = TestViewConfiguration(size: Size(1920, 1080));
+      binding.renderView.configuration = TestViewConfiguration(size: const Size(1920, 1080));
 
       // Setup App for testing
       SharedPreferences.setMockInitialValues({}); // Makes SharedPreferences work in tests.

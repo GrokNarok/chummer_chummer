@@ -13,7 +13,7 @@ enum RecoilCompensationFormula {
 }
 
 abstract class SettingsState implements Built<SettingsState, SettingsStateBuilder> {
-  factory SettingsState([void updates(SettingsStateBuilder b)]) = _$SettingsState;
+  factory SettingsState([void Function(SettingsStateBuilder b) updates]) = _$SettingsState;
   SettingsState._();
   factory SettingsState.initial({SharedPreferences? preferences}) {
     final languageCode = preferences?.getString('language_code');
